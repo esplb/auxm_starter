@@ -9,7 +9,9 @@ async fn main() {
     let app = Router::new()
         .route("/", get(index))
         .layer(tower_http::trace::TraceLayer::new_for_http());
-    let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let addr="0.0.0.0:3000";
+    let listener = TcpListener::bind(addr).await.unwrap();
+    tracing::debug!("listening on http://{}", addr);
     axum::serve(listener, app).await.unwrap();
 }
 
