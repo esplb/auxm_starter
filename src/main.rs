@@ -4,7 +4,7 @@ use tokio::net::TcpListener;
 
 #[tokio::main]
 async fn main() {
-    dotenv::dotenv().ok();
+    dotenvy::dotenv().ok();
     tracing_subscriber::fmt::init();
     let app = Router::new()
         .route("/", get(index))
